@@ -18,6 +18,9 @@ function getShoppingList(recipe_id){
             .join('recipe_ingredient_quantity', 'recipe.id', '=', 'recipe_ingredient_quantity.recipe_id')
 }
 
-function getInstructions(){
-
+function getInstructions(recipe_id){
+    return db.select('recipe.recipeName', 'steps.stepNumber', 'steps.instructions')
+            .where('recipe.id', '=', recipe_id)
+            .from('recipe')
+            .join('steps', 'steps.recipe_id', '=', 'recipe.id')
 }
